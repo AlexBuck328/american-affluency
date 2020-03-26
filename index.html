@@ -150,12 +150,13 @@
 
     var map = L.map('map', options);
 
-    var attributeValue = "stats_wealth_percent";
-    var incomeValue = "stats_median_income";
     var stateName = "NAME";
+    var attributeValue = "stats_total_index";
+    var wealthValue = "stats_wealth_percent"
+    var incomeValue = "stats_median_income";
     var povertyValue = "stats_percent_poverty";
 
-    var wealthLayer = $.getJSON("data/stats.js", function (data) {
+    var wealthLayer = $.getJSON("data/stats.geojson", function (data) {
       console.log(data)
       var dataLayer = L.geoJson(data, {
         style: function (feature) {
@@ -170,45 +171,20 @@
       drawMap(dataLayer);
     });
 
-    // STATE OUTLINE !!!
-    // Tell jQuery to wait until data is loaded before executing a function
-    $.when(wealthLayer).done(function () {
-      // load, filter, and style the state outline
-      $.getJSON("data/states.geojson", function (data) {
 
-        var stateLayer = L.geoJson(data, {
-          style: function (feature) {
-            return {
-              // match county outline color
-              color: '#bfbfbf',
-              // Make line weight larger than the county outline
-              weight: 1.25,
-              fillOpacity: 0,
-              // This property allows us control interactivty of layer
-              interactive: false
-            };
-          },
-        });
-        // Add layer to map!
-        stateLayer.addTo(map)
-      });
-    });
-
-
-    // WEALTH LAYER drawLegend 
     function drawLegend(breaks) {
 
       // create a new Leaflet control object, and position it top left
-      var wealthLegend = L.control({
+      var legend = L.control({
         position: 'topleft'
       });
 
       // when the legend is added to the map
-      wealthLegend.onAdd = function () {
+      legend.onAdd = function () {
 
         // create a new HTML <div> element and give it a class name of "legend"
         var div = L.DomUtil.create('div', 'legend');
-        let legendTitle = "Percent of State Population with <br> Estate Value $3 Million (or more)";
+        let legendTitle = "Quality of Life Index <br> (Relative to National Average)";
 
         // first append an <h3> tag to the div holding the current attribute
         // and norm values (i.e., the mapped phenomena)
@@ -223,8 +199,8 @@
           // of that class and include a label with the low and a high ends of that class range
           div.innerHTML +=
             `<span style="background:${color}"></span>
-         <label>${(breaks[i][0]*1).toLocaleString()}&mdash;
-           ${(breaks[i][1]*1).toLocaleString()}%</label>`;
+         <label>${(breaks[i][0]*1).toLocaleString()} to
+           ${(breaks[i][1]*1).toLocaleString()}</label>`;
         }
 
         // return the populated div to be added to the map
@@ -232,10 +208,10 @@
       };
 
       // add the legend to the map
-      wealthLegend.addTo(map);
-    } //end WEALTH LAYER drawLegend
+      legend.addTo(map);
+    } //end drawLegend
 
-    // WEALTH LAYER drawMap
+
     function drawMap(dataLayer) {
       var breaks = getClassBreaks(dataLayer);
 
@@ -253,9 +229,11 @@
         layer.on('mouseover', function () {
 
           var popup =
-            `<b>Estates >= $3M:</b> ${layer.feature.properties.stats_num_wealth.toLocaleString()} <br><b>State Pop:</b>
-                        ${layer.feature.properties.stats_population_total.toLocaleString()} <br><b>Percentage:</b>:
-                        ${layer.feature.properties.stats_wealth_percent.toLocaleString()}%`;
+            `<b>State:</b> ${layer.feature.properties[stateName].toLocaleString()} <br><b>Index Value:</b> 
+            ${layer.feature.properties[attributeValue].toLocaleString()} <br><b>Median Income:</b> 
+            $${layer.feature.properties[incomeValue].toLocaleString()}<br><b>Wealth Percentage:</b>:
+            ${layer.feature.properties.stats_wealth_percent.toLocaleString()}% <br><b>Poverty Percentage:</b> 
+            ${layer.feature.properties[povertyValue].toLocaleString()}%`;
           // console.log(layer.feature.properties)
           layer.bindPopup(popup)
         });
@@ -263,7 +241,7 @@
 
     } // end drawMap
 
-    // WEALTH LAYER getClassBreaks
+
     function getClassBreaks(dataLayer) {
       var values = [];
 
