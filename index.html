@@ -256,7 +256,7 @@
       // console.log(values)
 
       // determine similar clusters
-      var clusters = ss.ckmeans(values, 7);
+      var clusters = ss.ckmeans(values, 9);
 
       // create an array of the lowest value within each cluster
       var breaks = clusters.map(function (cluster) {
@@ -270,19 +270,23 @@
 
     function getColor(d, breaks) {
       if (d <= breaks[0][1]) {
-        return '#edf8fb';
+        return '#f7fcfd';
       } else if (d <= breaks[1][1]) {
-        return '#ccece6';
+        return '#edf8fb';
       } else if (d <= breaks[2][1]) {
-        return '#99d8c9';
+        return '#ccece6';
       } else if (d <= breaks[3][1]) {
-        return '#66c2a4';
+        return '#99d8c9';
       } else if (d <= breaks[4][1]) {
-        return '#41ae76';
+        return '#66c2a4';
       } else if (d <= breaks[5][1]) {
-        return '#238b45';
+        return '#41ae76';
       } else if (d <= breaks[6][1]) {
-        return '#005824';
+        return '#238b45';
+      } else if (d <= breaks[7][1]) { 
+        return '#006d2c';
+      } else if (d <=breaks[8][1]) { 
+        return '#00441b';
       }
     } // end getColor
   </script>
