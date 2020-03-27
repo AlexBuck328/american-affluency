@@ -10,16 +10,16 @@
     integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
     crossorigin="" />
   <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Poppins:300" rel="stylesheet">
 
   <style>
     body {
       margin: 0;
       padding: 0;
-      /* background-image: url("graphics/housing.jpeg");
-     background-repeat: no-repeat;
-     background-size: 100%; */
-      background: whitesmoke;
-      font-family: Lato, sans-serif;
+      background-image: url("graphics/serene.jpg");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      font-family: 'Abril Fatface', Cursive;
       color: #0D0000;
     }
 
@@ -32,6 +32,7 @@
       display: inline-block;
       margin-right: 20px;
       color: #001323;
+      font-size: 48px;
     }
 
     h2 {
@@ -43,25 +44,27 @@
       width: 80%;
       height: 540px;
       margin: 10px 10%;
-      background: whitesmoke;
+      background: rgba(255, 255, 255, 0.8);
       border: 2px solid #dddedf;
     }
 
     footer {
-      /* opacity: 75%; */
       padding: 6px 10%;
       width: 80%;
-
     }
 
     p {
-      background-color: whitesmoke;
+      font-family: 'Poppins', Sans-Serif;
       font-size: 1em;
       color: #001323;
     }
 
+    ul {
+      font-family: 'Poppins', Sans-Serif;
+    }
+
     .row {
-      background-color: whitesmoke;
+      background-color: rgba(255, 255, 255, 0.8);
       font-size: 1em;
       color: #001323;
       margin: 10px auto;
@@ -99,6 +102,7 @@
 
     .legend label {
       font-size: 1.1em;
+      font-family: 'Poppins', Sans-Serif;
     }
 
     .legend label:after {
@@ -111,7 +115,7 @@
 
 <body>
   <header>
-    <h1>Quality of Life </h1>
+    <h1>Economic Quality of Life </h1>
     <h2>Income, Wealth and Poverty in America</h2>
   </header>
 
@@ -125,16 +129,42 @@
         opportunities. We are free to live where we like and work in any career field we choose. An invariable result
         of a society as free as ours with so many avenues available for us to choose, is an inequality of outcomes.
         Meaning, one full-time worker may earn less income than another full-time worker. These variations can lead to
-        massive inequalities.<br></br> <br> This map is a representation of each states ranking based on income, wealth
-        and poverty statistics. An index value ranging from 7 to -7 was given to each data point. The index values
-        represent deviation from national medians. The positive index values represent a positive deviation from the
-        national median, while the negative index values represent a negative deviation from median. For example,
-        median household income for the United States is $57,652. A zero index value represents a median income between
-        $56,151 and $59,150. An index value of 7 represents the highest range of median incomes above the national median, while a -7
-        index value represents the lowest range median incomes below than national median. This process was applied to wealth and poverty
-        datasets as well. After index values were assigned to income, wealth, and poverty, the values were summed to
-        provide an overall index value. This method provides an over all quality of life measure relative to national
-        median figures for each state. </br><br></br><br> </p>
+        massive inequalities. This map is a visual representation of economic quality of life in the United States. I'd
+        like to reiterrate this is solely an economic measure. Quality of life can be measured by many different
+        metrics. Finances are simply one variable that is weighted equally through all parts of the country.
+        New York City has magificent architecture and world renowned night life. The Rocky Mountain West has
+        awe-inspiring vistas of natural beauty. These locational attributes undoubtedly impact quality of life.
+        How those (very different) area attractions are weighted is more individual than uniform. That is why the
+        financial aspect has been chosen for this exercise, it is uniform throughout the country and easily
+        quantifiable.</p>
+      <p>This map is a representation of each state's ranking based on income, wealth and poverty
+        statistics. An index value ranging from 7 to -7 was given to each data point. The index values represent
+        deviation from national medians. The positive index values represent a positive deviation from the national
+        median, while the negative index values represent a negative deviation from median. For example, median
+        household income for the United States is $57,652. A zero index value represents a median income between
+        $56,151 and $59,150. An index value of 7 represents the highest range of median incomes above the national
+        median, while a -7 index value represents the lowest of range median incomes below than national median.
+        This process was applied to the wealth and poverty datasets as well. After index values were assigned to income,
+        wealth, and poverty, the values were summed to provide an overall index value. This method provides an over all
+        economic quality of life measure relative to national median figures for each state. While median income and
+        percentage of population living in poverty are rather straightforward, the wealth statistic deserves a brief
+        explanation. It is a measure of estate value equal to or greater than $3 million.</p>
+      <p><b>National Median Statistics:</b>
+        <ul>
+          <li>Median Income: $57,652</li>
+          <li>Percetange of Wealthy Estates: .152%</li>
+          <li>Percentage of Population living in Poverty: 12.3%</li>
+        </ul>
+      </p>
+      <p>The income and poverty data used was downloaded from the <a
+          href="https://www.census.gov/data/tables/2019/demo/income-poverty/p60-266.html">Census Bureau.</a> The wealth
+        data was downloaded from the <a
+          href="https://www.irs.gov/statistics/soi-tax-stats-top-wealthholders-by-state-of-residence">IRS.</a> The data
+        was compiled in excel, then given index values. A table join was performed in QGIS with state boundaries
+        provided
+        by the <a
+          href="https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html">Census
+          Bureau.</a></p>
   </footer>
 
   <!-- Load scripts using Subresource Integrity (SRI) is
