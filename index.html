@@ -114,17 +114,27 @@
     <h1>Quality of Life </h1>
     <h2>Income, Wealth and Poverty in America</h2>
   </header>
-  
-    <div id='map'></div>
+
+  <div id='map'></div>
 
   <footer>
     <div class="row">
       <p>Map authored by Alexander Buck</p>
-      <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum.</p>
+      <p> Income, wealth and poverty are all interrelated. Without income it is nearly impossible to build wealth.
+        Living at or below the poverty level is determined by income. In the United States, we are blessed with many
+        opportunities. We are free to live where we like and work in any career field we choose. An invariable result
+        of a society as free as ours with so many avenues available for us to choose, is an inequality of outcomes.
+        Meaning, one full-time worker may earn less income than another full-time worker. These variations can lead to
+        massive inequalities.<br></br> <br> This map is a representation of each states ranking based on income, wealth
+        and poverty statistics. An index value ranging from 7 to -7 was given to each data point. The index values
+        represent deviation from national medians. The positive index values represent a positive deviation from the
+        national median, while the negative index values represent a negative deviation from median. For example,
+        median household income for the United States is $57,652. A zero index value represents a median income between
+        $56,151 and $59,150. An index value of 7 represents the highest range of median incomes above the national median, while a -7
+        index value represents the lowest range median incomes below than national median. This process was applied to wealth and poverty
+        datasets as well. After index values were assigned to income, wealth, and poverty, the values were summed to
+        provide an overall index value. This method provides an over all quality of life measure relative to national
+        median figures for each state. </br><br></br><br> </p>
   </footer>
 
   <!-- Load scripts using Subresource Integrity (SRI) is
@@ -183,7 +193,7 @@
 
         // create a new HTML <div> element and give it a class name of "legend"
         var div = L.DomUtil.create('div', 'legend');
-        let legendTitle = "Quality of Life Index <br> (Relative to National Average)";
+        let legendTitle = "Quality of Life Index";
 
         // first append an <h3> tag to the div holding the current attribute
         // and norm values (i.e., the mapped phenomena)
