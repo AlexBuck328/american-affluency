@@ -3,7 +3,7 @@
 
 <head>
   <meta charset=utf-8 />
-  <title>Wealth/Income/Poverty</title>
+  <title>Quality of Life Index</title>
   <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
@@ -15,9 +15,9 @@
     body {
       margin: 0;
       padding: 0;
-      /* background-image: url("graphics/housing.jpeg"); 
-      background-repeat: no-repeat;
-      background-size: 100%; */
+      /* background-image: url("graphics/housing.jpeg");
+     background-repeat: no-repeat;
+     background-size: 100%; */
       background: whitesmoke;
       font-family: Lato, sans-serif;
       color: #0D0000;
@@ -48,7 +48,7 @@
     }
 
     footer {
-      opacity: 75%;
+      /* opacity: 75%; */
       padding: 6px 10%;
       width: 80%;
 
@@ -64,7 +64,7 @@
       background-color: whitesmoke;
       font-size: 1em;
       color: #001323;
-      margin: 10px 10%;
+      margin: 10px auto;
       border: 2px solid #dddedf;
     }
 
@@ -111,12 +111,11 @@
 
 <body>
   <header>
-    <h1>Inequality</h1>
-    <h2>wealth and income inequality</h2>
+    <h1>Quality of Life </h1>
+    <h2>Income, Wealth and Poverty in America</h2>
   </header>
-
-  <div id='map'></div>
-
+  
+    <div id='map'></div>
 
   <footer>
     <div class="row">
@@ -283,9 +282,9 @@
         return '#41ae76';
       } else if (d <= breaks[6][1]) {
         return '#238b45';
-      } else if (d <= breaks[7][1]) { 
+      } else if (d <= breaks[7][1]) {
         return '#006d2c';
-      } else if (d <=breaks[8][1]) { 
+      } else if (d <= breaks[8][1]) {
         return '#00441b';
       }
     } // end getColor
