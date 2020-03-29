@@ -87,9 +87,9 @@
       margin: 0 0 10px 0;
     }
 
-  /*  .leaflet-bar a {
+    /*  .leaflet-bar a {
       /* Override the default style for Leaflet's zoom */
-  /*    background: rgba(100, 100, 100, 0.9);
+    /*    background: rgba(100, 100, 100, 0.9);
       color: rgba(244, 244, 244, 0.8);
     } */
 
@@ -110,10 +110,6 @@
       display: block;
       clear: both;
     }
-
-  /*  .leaflet-control-zoom {
-      color: rgba(255, 255, 255, 0.8);
-    }*/
   </style>
 </head>
 
@@ -164,7 +160,7 @@
           href="https://www.census.gov/data/tables/2019/demo/income-poverty/p60-266.html">Census Bureau.</a> The wealth
         data was downloaded from the <a
           href="https://www.irs.gov/statistics/soi-tax-stats-top-wealthholders-by-state-of-residence">IRS.</a> The data
-        was compiled in excel, then given index values. A table join was performed in QGIS with state boundaries
+        was compiled in Microsoft Excel, then given index values. A table join was performed in QGIS with state boundaries
         provided
         by the <a
           href="https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html">Census
@@ -332,8 +328,8 @@
         return '#00441b';
       }
     } // end getColor
-    L.control.zoom({ 
-      position:'topright',
+    L.control.zoom({
+      position: 'topright',
       fillColor: 'whitesmoke',
     }).addTo(map)
   </script>
