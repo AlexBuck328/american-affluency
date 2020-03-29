@@ -87,11 +87,11 @@
       margin: 0 0 10px 0;
     }
 
-    .leaflet-bar a {
+  /*  .leaflet-bar a {
       /* Override the default style for Leaflet's zoom */
-      background: rgba(100, 100, 100, 0.9);
+  /*    background: rgba(100, 100, 100, 0.9);
       color: rgba(244, 244, 244, 0.8);
-    }
+    } */
 
     .legend span {
       width: 20px;
@@ -110,6 +110,10 @@
       display: block;
       clear: both;
     }
+
+  /*  .leaflet-control-zoom {
+      color: rgba(255, 255, 255, 0.8);
+    }*/
   </style>
 </head>
 
@@ -184,7 +188,7 @@
     var options = {
       center: [37.84, -101.37],
       zoom: 4,
-      zoomControl: true,
+      zoomControl: false,
     }
 
     var map = L.map('map', options);
@@ -328,6 +332,10 @@
         return '#00441b';
       }
     } // end getColor
+    L.control.zoom({ 
+      position:'topright',
+      fillColor: 'whitesmoke',
+    }).addTo(map)
   </script>
 
 </body>
