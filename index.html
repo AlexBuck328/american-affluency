@@ -43,14 +43,16 @@
     #map {
       width: 80%;
       height: 540px;
-      margin: 10px 10%;
+      margin: 10px auto;
       background: rgba(255, 255, 255, 0.8);
       border: 2px solid #dddedf;
     }
 
     footer {
-      padding: 6px 10%;
+      /* padding: 6px 20px; */
+      margin: 20px auto;
       width: 80%;
+      border: 2px solid #dddedf;
     }
 
     p {
@@ -67,8 +69,9 @@
       background-color: rgba(255, 255, 255, 0.8);
       font-size: 1em;
       color: #001323;
-      margin: 10px auto;
-      border: 2px solid #dddedf;
+      /* margin: 10px auto; */
+      /* border: 2px solid #dddedf; */
+      padding: 10px 30px;
     }
 
     .legend {
@@ -130,9 +133,9 @@
         of a society as free as ours with so many avenues available for us to choose, is an inequality of outcomes.
         Meaning, one full-time worker may earn less income than another full-time worker. These variations can lead to
         massive inequalities. This map is a visual representation of economic quality of life in the United States. I'd
-        like to reiterrate this is solely an economic measure. Quality of life can be measured by many different
+        like to reiterate this is solely an economic measure. Quality of life can be measured by many different
         metrics. Finances are simply one variable that is weighted equally through all parts of the country.
-        New York City has magificent architecture and world renowned night life. The Rocky Mountain West has
+        New York City has magnificent architecture and world renowned night life. The Rocky Mountain West has
         awe-inspiring vistas of natural beauty. These locational attributes undoubtedly impact quality of life.
         How those (very different) area attractions are weighted is more individual than uniform. That is why the
         financial aspect has been chosen for this exercise, it is uniform throughout the country and easily
@@ -208,6 +211,8 @@
         }
       }).addTo(map)
       drawMap(dataLayer);
+      // New function to add a drop down on the map and zoom to selected region.
+      drawZoom() 
     });
 
 
@@ -251,10 +256,78 @@
     } //end drawLegend
 
 
+    function drawZoom() {
+
+    // create a new Leaflet control object, and position it bottom left
+    var legend = L.control({
+      position: 'bottomleft'
+    });
+
+    // when the legend is added to the map
+    legend.onAdd = function () {
+
+      // create a new HTML <div> element and give it a class name of "legend"
+      var div = L.DomUtil.create('div', 'legend');
+      
+      // Add a select drop down. The function is defined below and passes the value in the drop down.
+      div.innerHTML = `<h3>Zoom to region</h3>
+      <select id="cars" onchange="selectRegion(this.value)">
+        <option value="AK">Alaska</option>
+        <option value="HI">Hawaii</option>
+        <option value="PR">Puerto Rico</option>
+        <option value="Southeast">Southeast</option>
+      </select>
+      `;
+      // return the populated div to be added to the map
+      return div;
+    };
+
+    // add the legend to the map
+    legend.addTo(map);
+    } //end drawLegend
+
+    // View how the map properties change
+    map.on("move", function() {
+      let x = map.getCenter()
+      let y = map.getZoom()
+      console.log(x, y)
+    })
+
+    // Define the regions and then fly to them
+    function selectRegion(option) {
+        var regions = {
+          AK: {
+            zoom: 4,
+            center:  {lat: 62.79493, lng: -150.524825}
+          },
+          HI: {
+            zoom: 7,
+            center: {lat: 20.416716, lng: -157.16060} 
+          },
+          PR: {
+            zoom: 8,
+            center: {lat: 18.2710861, lng: -66.415606}
+          },
+          Southeast: {
+            zoom: 5,
+            center: {lat: 31.9894418, lng: -83.3727796}
+          }
+        }
+
+        for (region in regions) {
+          if (region == option) {
+            map.flyTo(regions[region].center, regions[region].zoom)
+          }
+        }
+
+      }
+
+
     function drawMap(dataLayer) {
       var breaks = getClassBreaks(dataLayer);
 
       drawLegend(breaks);
+      
 
       dataLayer.eachLayer(function (layer) {
 
